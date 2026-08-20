@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'DM Serif Display', serif;
+  --font-sans: 'Inter', sans-serif;
+  --color-blue-primary: #5795a7;
+  --color-blue-light: #1c478b;
+  --color-blue-mid: #3b6fd4;
+  --color-accent: #1a4fa0;
+}
+
+:root {
+  font-family: 'Inter', sans-serif;
+}
+
+* {
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}

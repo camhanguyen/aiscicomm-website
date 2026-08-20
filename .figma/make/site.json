@@ -1,0 +1,10 @@
+{
+  "description": "Showcase project details with a clean, user-friendly website featuring team profiles, publications, and a resource curriculum guide for easy access.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
