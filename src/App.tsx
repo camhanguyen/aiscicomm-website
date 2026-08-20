@@ -3,6 +3,11 @@ import { useState } from "react";
 import guidePdf from "./curriculum/AISciComm_Unit Guide.pdf";
 import journalPdf from "./curriculum/AISciComm_Science Journal.pdf";
 
+const images = import.meta.glob('./picture/*', {
+  eager: true,
+  import: "default",
+}) as Record<string, string>
+
 const files = import.meta.glob("./curriculum/*.{pdf,pptx}", {
   eager: true,
   query: "?url",
@@ -41,7 +46,7 @@ const PIS = [
     title: "Principal Investigator, Professor",
     dept: "School of Education, University of California-Irvine",
     bio: "Dr. Santagata is an educational researcher, studying math and science teaching and learning. She is a leading scholar in the use of video technologies to examine learning interactions and to foster teacher professional competence. ",
-    img: "/src/picture/santagata.jpeg",
+    img: images['./picture/santagata.jpeg'],
     website: "https://faculty.sites.uci.edu/santagata/"
   },
   {
@@ -49,7 +54,7 @@ const PIS = [
     title: "Co-Principal Investigator, Assistant Professor",
     dept: "School of Education, University of North Carolina Chapel Hill",
     bio: "Dr. Nguyen designs learning technologies and studies their impact on promoting deeper STEM knowledge and competencies. She applies learning analytics to investigate how people construct knowledge in collaboration with others and with technologies.",
-    img: "/src/picture/nguyen-ha.png",
+    img: images['./picture/nguyen-ha.png'],
     website: "https://www.ha-nguyen.net"
   },
   {
@@ -57,7 +62,7 @@ const PIS = [
     title: "Co-Principal Investigator, Administrator",
     dept: "Inside the Outdoors, Orange County Department of Education",
     bio: "Ludovise is a nonformal educator, with ten years of experience in curriculum design and facilitation. She leads Inside the Outdoors, a unique and hands-on environmental education program serving over 110,000 participants per school year.",
-    img: "/src/picture/ludovise.jpg",
+    img: images['./picture/ludovise.jpg'],
     website: "https://ito.ocde.us/"
   },
 ];
@@ -67,25 +72,25 @@ const RESEARCH_ASSISTANTS = [
     name: "Kayla Ueshiro",
     role: "PhD Student, Education, University of California-Irvine",
     research: "Emergent bilingual education, pedagogical practices",
-    img: "/src/picture/ueshiro.jpeg",
+    img: images['./picture/ueshiro.jpeg'],
   },
   {
     name: "Victoria Nguyen",
     role: "PhD Student, Education, University of California-Irvine",
     research: "Environmental education",
-    img: "/src/picture/nguyen-victoria.jpg",
+    img: images['./picture/nguyen-victoria.jpg'],
   },
    {
     name: "Erick Valdez",
     role: "Educational Support Manager, Inside the Outdoors, OCDE",
     research: "Nonformal education",
-    img: "/src/picture/valdez.jpeg",
+    img: images['./picture/valdez.jpeg'],
   },
   {
     name: "Tilly Duong",
     role: "Lead Field Naturalist, Inside the Outdoors, OCDE",
     research: "Nonformal education, ecology",
-    img: "/src/picture/duong.jpeg",
+    img: images['./picture/duong.jpeg'],
   },
 ];
 
@@ -593,7 +598,7 @@ function NavBar({ current, navigate }: { current: Page; navigate: (p: Page) => v
                   <tspan fill="#1D70B8">C</tspan>
                   <tspan fill="#0F2537">omm</tspan>
                 </text>
-                <text x="5" y="182" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="26" font-weight="500" fill="#0F2537" letter-spacing="0.2">
+                <text x="5" y="182" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="36" font-weight="500" fill="#0F2537" letter-spacing="0.2">
                   AI for Inclusive Science Communication
                 </text>
               </g>
@@ -842,7 +847,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
             <div className="flex items-center gap-12">
               <div className="overflow-hidden rounded-xl bg-[#e8eef8] w-[120px]">
                 <img
-                  src="/src/picture/lynwood.png"
+                  src={images['./picture/lynwood.png']}
                   alt="Lynwood Unified School District"
                   className="w-full h-auto object-cover"
                 />
@@ -850,7 +855,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
 
               <div className="overflow-hidden rounded-xl bg-[#e8eef8] w-[80px]">
                 <img
-                  src="/src/picture/ocde.png"
+                  src={images['./picture/ocde.png']}
                   alt="Orange County Department of Education"
                   className="w-full h-auto object-cover"
                 />
