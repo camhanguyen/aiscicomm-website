@@ -12,7 +12,8 @@ export default defineConfig(({ mode }) => {
 
   return {
    // base: process.env.FIGMA_PUBLIC_URL ? `${process.env.FIGMA_PUBLIC_URL}/` : '/',
-   base: '/aiscicomm-website/',
+   //base: '/aiscicomm-website/',
+   base: '/',
     build: {
       sourcemap: emitSourcemaps ? 'inline' : false,
       minify: !emitSourcemaps,
