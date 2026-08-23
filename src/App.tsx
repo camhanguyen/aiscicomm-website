@@ -1106,7 +1106,7 @@ function ResourcesPage() {
             </div>
 
             <p className="text-xs text-gray-400 mt-3 text-center">
-              Exploring the impact of climate change through creating and refining models with chatbots. 
+              Students explore the impact of climate change through refining their models with chatbots. 
             </p>
           </div>
         </div>
