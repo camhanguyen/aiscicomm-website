@@ -1084,6 +1084,7 @@ function ResourcesPage() {
             </h1>
 
             <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+              <div>
             <p className="text-gray-500 max-w-xl mb-8 leading-relaxed">
               This curriculum is intended for high school environmental science
               (grades 9–12) and has been implemented in AP Environmental Science
@@ -1092,8 +1093,38 @@ function ResourcesPage() {
               interviews, constructing and refining models, and designing science
               communication solutions. Students consider how different tools,
               including simulation and generative AI, can help them investigate
-              scientific questions.
-            </p>
+              scientific questions. </p>
+
+
+            <div className="mt-3 items-center gap-1 text-xs text-gray-400">
+              <a href="https://aiscicomm.com">AISciComm Curriculum</a> © 2026 by{" "}
+              <a>Ha Nguyen, Erick Valdez, Kayla Ueshiro, Victoria Nguyen, Yenvy Pham, Tilly Duong, Sara Ludovise, & Rossella Santagata</a>{" "}
+            is licensed under <span className="inline-flex items-center gap-1 whitespace-nowrap">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
+                  <img
+                    src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
+                    alt="CC"
+                    className="w-4 h-4 ml-1"
+                  />
+                  <img
+                    src="https://mirrors.creativecommons.org/presskit/icons/by.svg"
+                    alt="BY"
+                    className="w-4 h-4"
+                  />
+                  <img
+                    src="https://mirrors.creativecommons.org/presskit/icons/nc.svg"
+                    alt="NC"
+                    className="w-4 h-4"
+                  />
+                  <img
+                    src="https://mirrors.creativecommons.org/presskit/icons/sa.svg"
+                    alt="SA"
+                    className="w-4 h-4"
+                  />
+                  </span>
+            </div>
+          </div>
+            
 
              {/* Right: Illustration */}
           <div className="hidden md:block">
