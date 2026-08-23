@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // Import curriculum components
 import guidePdf from "./curriculum/AISciComm_Unit Guide.pdf";
 import journalPdf from "./curriculum/AISciComm_Science Journal.pdf";
@@ -32,12 +32,13 @@ const getLessonFiles = (
   introSlides,
 });
 
-type Page = "home" | "publications" | "resources";
+type Page = "home" | "publications" | "resources" | "team";
 
 const NAV_LINKS: { label: string; page: Page }[] = [
   { label: "Home", page: "home" },
   { label: "Resources", page: "resources" },
   { label: "Publications", page: "publications" },
+  { label: "Our Team", page: "team" },
 ];
 
 const PIS = [
@@ -542,7 +543,7 @@ const SLIDES = [
   <div className="w-full max-w-xs bg-[#fcfefd] rounded-xl border border-[#c9dedb] shadow-sm overflow-hidden">
     <div className="bg-[#1a4fa0] px-4 py-2.5 flex items-center gap-2">
       <div className="w-2 h-2 rounded-full bg-[#f4c542]" />
-      <span className="text-white text-xs font-medium">Civil Engineer Chatbot</span>
+      <span className="text-white text-xs font-medium">Kelp Researcher Chatbot</span>
     </div>
 
     <div className="p-3 space-y-2">
@@ -590,7 +591,7 @@ function NavBar({ current, navigate }: { current: Page; navigate: (p: Page) => v
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 240" width="100%" height="100%">
               <rect width="100%" height="100%" fill="#FFFFFF" />
               <g transform="translate(40, 0)">
-                <text x="0" y="130" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="92" font-weight="800" letter-spacing="-1">
+                <text x="0" y="130" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="140" font-weight="800" letter-spacing="-1">
                   <tspan fill="#1D70B8">A</tspan>
                   <tspan fill="#1D70B8">I</tspan>
                   <tspan fill="#1D70B8">S</tspan>
@@ -598,7 +599,7 @@ function NavBar({ current, navigate }: { current: Page; navigate: (p: Page) => v
                   <tspan fill="#1D70B8">C</tspan>
                   <tspan fill="#0F2537">omm</tspan>
                 </text>
-                <text x="5" y="182" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="36" font-weight="500" fill="#0F2537" letter-spacing="0.2">
+                <text x="5" y="182" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif" font-size="43" font-weight="500" fill="#0F2537" letter-spacing="0.2">
                   AI for Inclusive Science Communication
                 </text>
               </g>
@@ -658,6 +659,13 @@ function NavBar({ current, navigate }: { current: Page; navigate: (p: Page) => v
 
 function HomePage({ navigate }: { navigate: (p: Page) => void }) {
   const [slide, setSlide] = useState(0);
+  useEffect(() => {
+  const interval = setInterval(() => {
+    setSlide((current) => (current + 1) % SLIDES.length);
+  }, 7000);
+
+  return () => clearInterval(interval);
+}, []);
 
   return (
     <div className="bg-white min-h-screen">
@@ -667,8 +675,23 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
           <div className="grid md:grid-cols-[1fr_380px] gap-12 items-center pb-12 min-h-[340px]">
             <div>
               <p className="text-[#1a4fa0] text-xs font-medium tracking-widest uppercase mb-3">
-                An AI-Integrated Environmental Science Curriculum for High School
+                AISciComm: An AI-Integrated Environmental Science Curriculum for High School
               </p>
+
+              {/* Project Overview */}
+              <div className="max-w-3xl mb-10">
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  This project engages high school students from Southern California schools in an AI-guided science curriculum 
+                  for learning and practicing inclusive science communication and marine biodiversity. 
+                  Students interact with chatbots that represent different community perspectives around the local marine ecosystems.
+                  The project invites students, formal and nonformal educators, and marine scientists to co-design the conversational agents’ interface and exchange. 
+                </p>
+                <p className="text-gray-600 text-sm leading-relaxed mt-4">
+                  <b>Research Questions</b>: (1) How can the co-design and implementation of conversational agents with informal educators, community partners, and students be facilitated in equitable, collaborative ways?, 
+                  (2) How does the AI-integrated curriculum support inclusive science communication about environmental systems, interest in STEM careers, and AI literacy?, and 
+                  (3) What instructional adaptations do teachers make to facilitate these learning outcomes?
+                </p>
+              </div>
 
               {/* Dot navigation */}
               <div className="flex items-center gap-3 pb-8">
@@ -676,22 +699,26 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
                   <button
                     key={i}
                     onClick={() => setSlide(i)}
-                    className={`transition-all rounded-full ${slide === i ? "w-6 h-2 bg-[#1a4fa0]" : "w-2 h-2 bg-gray-200 hover:bg-gray-400"
+                    className={`transition-all rounded-full ${
+                      slide === i 
+                      ? "w-10 h-3 bg-[#1a4fa0]" 
+                      : "w-3 h-3 bg-gray-200 hover:bg-gray-400"
                       }`}
                     aria-label={s.label}
+                    aria-current={slide === i ? "true" : "false"}
                   />
                 ))}
                 <span className="text-xs text-gray-400 ml-2">{SLIDES[slide].label}</span>
               </div>
 
               <h1
-                className="text-4xl md:text-5xl leading-tight text-gray-900 mb-4"
+                className="text-2xl md:text-2xl leading-tight text-gray-900 mb-4"
                 style={{ fontFamily: "DM Serif Display, serif" }}
               >
                 {SLIDES[slide].label}
               </h1>
-              <p className="text-gray-500 text-base italic mb-4">{SLIDES[slide].subtitle}</p>
-              <p className="text-gray-600 leading-relaxed mb-8 max-w-lg">
+              <p className="text-gray-500 text-base italic mb-4 text-med">{SLIDES[slide].subtitle}</p>
+              <p className="text-gray-600 leading-relaxed mb-8 max-w-lg text-sm">
                 {SLIDES[slide].body}
               </p>
               <div className="flex flex-wrap gap-4">
@@ -699,7 +726,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
                   onClick={() => navigate("resources")}
                   className="px-6 py-3 bg-[#1a4fa0] text-white text-sm font-medium rounded hover:bg-[#163d82] transition-colors"
                 >
-                  Explore Curriculum
+                  Explore Resources
                 </button>
                 <button
                   onClick={() => navigate("publications")}
@@ -708,7 +735,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
                   View Publications
                 </button>
                 <button
-                  onClick={() => document.getElementById("our-team")?.scrollIntoView({ behavior: "smooth", })}
+                  onClick={() => navigate("team")}
                   className="px-6 py-3 border border-gray-300 text-gray-700 text-sm font-medium rounded hover:border-[#1a4fa0] hover:text-[#1a4fa0] transition-colors"
                 >
                   Our Team
@@ -717,7 +744,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
             </div>
 
             <div
-              className={`hidden md:flex rounded-xl overflow-hidden ${SLIDES[slide].bg}`}
+              className={`hidden md:flex rounded-xl overflow-hidden ${SLIDES[slide].bg} mt-40`}
               style={{ height: 300 }}
             >
               <div className="w-full h-full">
@@ -729,12 +756,34 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
 
         </div>
       </section>
+                  {/* Footer */}
+      <footer className="border-t border-gray-100 bg-white">
+        <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+          <span style={{ fontFamily: "DM Serif Display, serif" }} className="text-gray-700">
+            AISciComm
+          </span>
+          <span>This work has been supported by the National Science Foundation under Grant <a href="https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2241596&HistoricalAwards=false" target="_blank"><u>#2241596</u></a> and the Spencer Foundation. Any opinions, findings, and conclusions expressed in these materials are those of the authors and do not necessarily reflect the views of the Foundations. </span>
+          <span>©2026</span>
+        </div>
+      </footer>
+    </div>
+  );
+}
 
-      {/* Team section */}
-      <section id="our-team" className="max-w-7xl mx-auto px-6 py-20">
-        {/* Principal Investigators */}
-        <div className="mb-12">
-          <p className="text-[#1a4fa0] text-xs font-medium tracking-widest uppercase mb-2">Our Team</p>
+{/* Team section */}
+function TeamPage() {
+  return(
+    <div className="min-h-screen bg-white">
+      <main className="max-w-7xl mx-auto px-6 py-20">
+    {/* Principal Investigators */}
+        <section className="mb-12">
+        {/*  <p className="text-[#1a4fa0] text-xs font-medium tracking-widest uppercase mb-2">Our Team</p> */}
+          <h1
+          className="text-5xl text-gray-900 mb-4"
+          style={{ fontFamily: "DM Serif Display, serif" }}
+        >
+          Our Team
+        </h1>
           <h2
             className="text-2xl text-gray-900 mb-10"
             style={{ fontFamily: "DM Serif Display, serif" }}
@@ -763,13 +812,12 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
               </div>
             ))}
           </div>
-        </div>
+        </section>
 
-        {/* Divider */}
         <div className="border-t border-gray-100 mb-12" />
 
         {/* Research Assistants */}
-        <div>
+        <section className="mb-12">
           <h2
             className="text-2xl text-gray-900 mb-8"
             style={{ fontFamily: "DM Serif Display, serif" }}
@@ -808,12 +856,12 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
               </div>
             ))}
           </div>
-        </div>
+          </section>
+
         <div className="border-t border-gray-100 mt-12 mb-12" />
 
-
-        <div className="grid md:grid-cols-3 gap-12">
           {/* Undergraduate Researchers */}
+        <section className="grid md:grid-cols-3 gap-12">
           <div>
             <h2
               className="text-2xl text-gray-900 mb-8"
@@ -844,6 +892,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
             >
               Education Partners
             </h2>
+
             <div className="flex items-center gap-12">
               <div className="overflow-hidden rounded-xl bg-[#e8eef8] w-[120px]">
                 <img
@@ -861,13 +910,11 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
                 />
               </div>
             </div>
-          </div>
-        </div>
+            </div>
+          </section>
+        </main>
 
-
-      </section>
-
-      {/* Footer */}
+          {/* Footer */}
       <footer className="border-t border-gray-100 bg-white">
         <div className="max-w-6xl mx-auto px-6 py-10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
           <span style={{ fontFamily: "DM Serif Display, serif" }} className="text-gray-700">
@@ -880,6 +927,10 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
     </div>
   );
 }
+
+
+ 
+
 
 function PublicationsPage() {
   const [filter, setFilter] = useState<"All" | "Peer-Reviewed" | "Conference">("All");
@@ -1016,50 +1067,93 @@ function ResourcesPage() {
   return (
     <div className="bg-white min-h-screen">
       <div className="max-w-6xl mx-auto px-6 pt-16 pb-24">
-        <p className="text-[#1a4fa0] text-xs font-medium tracking-widest uppercase mb-3">
-          For Educators
-        </p>
-        <h1
-          className="text-5xl text-gray-900 mb-4"
-          style={{ fontFamily: "DM Serif Display, serif" }}
-        >
-          Curriculum Resources
-        </h1>
-        <p className="text-gray-500 max-w-xl mb-6 leading-relaxed">
-          This curriculum is intended for high school environmental science (grades 9-12) and has been implemented in AP Environmental Science and geology classes.
-          Students explore how climate change is affecting Southern California's ocean through conducting interviews, constructing and refining models, and designing science communication solutions.
-          Students consider how different tools, including simulation and generative AI, can help them investigate scientific questions.
-        </p>
 
-        <div className="mt-16 grid md:grid-cols-3 gap-6 max-w-4xl flex flex-wrap gap-3 mb-14">
-          {[
-            {
-              title: "Unit Guide",
-              desc: "Curriculum overview, including alignment with NGSS and AI standards.",
-              link: guidePdf,
-              label: "Unit Guide PDF →",
-            },
-            {
-              title: "Student Journal",
-              desc: "Contains task activity sheets, student-facing instruction, and post-lesson reflection prompts for the entire unit.",
-              link: journalPdf,
-              label: "Student Journal PDF →",
-            },
-          ].map((r) => (
-            <div key={r.title} className="border border-gray-100 rounded-xl p-6 hover:shadow-sm transition-shadow">
-              <h3
-                className="text-lg text-gray-900 mb-2"
-                style={{ fontFamily: "DM Serif Display, serif" }}
-              >
-                {r.title}
-              </h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-4">{r.desc}</p>
-              <a href={r.link} target="_blank" rel="noopener noreferrer" className="text-sm text-[#1a4fa0] hover:underline font-medium">
-                {r.label}
-              </a>
+        {/* Curriculum Header */}
+
+          {/* Left: Overview */}
+          <div>
+            <p className="text-[#1a4fa0] text-xs font-medium tracking-widest uppercase mb-3">
+              For Educators
+            </p>
+
+            <h1
+              className="text-5xl text-gray-900 mb-4"
+              style={{ fontFamily: "DM Serif Display, serif" }}
+            >
+              Curriculum Resources
+            </h1>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+            <p className="text-gray-500 max-w-xl mb-8 leading-relaxed">
+              This curriculum is intended for high school environmental science
+              (grades 9–12) and has been implemented in AP Environmental Science
+              and geology classes. Students explore how climate change is
+              affecting Southern California's ocean through conducting
+              interviews, constructing and refining models, and designing science
+              communication solutions. Students consider how different tools,
+              including simulation and generative AI, can help them investigate
+              scientific questions.
+            </p>
+
+             {/* Right: Illustration */}
+          <div className="hidden md:block">
+            <div className="overflow-hidden rounded-med bg-[#e8eef8]">
+              <img
+                src={images['./picture/chatbot_screenshot.png']}
+                alt="Students exploring environmental science and climate change"
+                className="w-full h-[250px] object-cover"
+              />
             </div>
-          ))}
+
+            <p className="text-xs text-gray-400 mt-3 text-center">
+              Exploring the impact of climate change through creating and refining models with chatbots. 
+            </p>
+          </div>
         </div>
+
+            {/* Resource Cards */}
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[
+                {
+                  title: "Unit Guide",
+                  desc: "Curriculum overview, including alignment with NGSS and AI standards.",
+                  link: guidePdf,
+                  label: "Unit Guide PDF →",
+                },
+                {
+                  title: "Student Journal",
+                  desc: "Contains task activity sheets, student-facing instruction, and post-lesson reflection prompts for the entire unit.",
+                  link: journalPdf,
+                  label: "Student Journal PDF →",
+                },
+              ].map((r) => (
+                <div
+                  key={r.title}
+                  className="border border-gray-100 rounded-xl p-6 hover:shadow-sm transition-shadow"
+                >
+                  <h3
+                    className="text-lg text-gray-900 mb-2"
+                    style={{ fontFamily: "DM Serif Display, serif" }}
+                  >
+                    {r.title}
+                  </h3>
+
+                  <p className="text-gray-500 text-sm leading-relaxed mb-4">
+                    {r.desc}
+                  </p>
+
+                  <a
+                    href={r.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-[#1a4fa0] hover:underline font-medium"
+                  >
+                    {r.label}
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-14">
           {LESSONS.map((unit, i) => (
@@ -1226,6 +1320,7 @@ export default function App() {
       {page === "home" && <HomePage navigate={setPage} />}
       {page === "resources" && <ResourcesPage />}
       {page === "publications" && <PublicationsPage />}
+      {page === "team" && <TeamPage />}
     </div>
   );
 }
