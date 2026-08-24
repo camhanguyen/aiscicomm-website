@@ -98,7 +98,7 @@ const RESEARCH_ASSISTANTS = [
 const UNDERGRAD_RESEARCHERS = [
   { name: "Jennifer Pei" },
   { name: "Yenvy Pham" },
-  { name: "Ashley Hernadez" },
+  { name: "Ashley Hernandez" },
   { name: "Hunter King" },
   { name: "Vy Nguyen" }
 ]
@@ -779,7 +779,7 @@ function TeamPage() {
         <section className="mb-12">
         {/*  <p className="text-[#1a4fa0] text-xs font-medium tracking-widest uppercase mb-2">Our Team</p> */}
           <h1
-          className="text-5xl text-gray-900 mb-4"
+          className="text-4xl text-gray-900 mb-4"
           style={{ fontFamily: "DM Serif Display, serif" }}
         >
           Our Team
@@ -943,7 +943,7 @@ function PublicationsPage() {
           Scholarship
         </p>
         <h1
-          className="text-5xl text-gray-900 mb-4"
+          className="text-4xl text-gray-900 mb-4"
           style={{ fontFamily: "DM Serif Display, serif" }}
         >
           Publications
@@ -1077,7 +1077,7 @@ function ResourcesPage() {
             </p>
 
             <h1
-              className="text-5xl text-gray-900 mb-4"
+              className="text-4xl text-gray-900 mb-4"
               style={{ fontFamily: "DM Serif Display, serif" }}
             >
               Curriculum Resources
@@ -1143,7 +1143,7 @@ function ResourcesPage() {
         </div>
 
             {/* Resource Cards */}
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-3 gap-4 mb-6">
               {[
                 {
                   title: "Unit Guide",
@@ -1186,7 +1186,7 @@ function ResourcesPage() {
             </div>
           </div>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-14">
+        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
           {LESSONS.map((unit, i) => (
             <button
               key={i}
