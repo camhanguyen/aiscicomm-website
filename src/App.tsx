@@ -1098,7 +1098,7 @@ function ResourcesPage() {
 
             <div className="mt-3 items-center gap-1 text-xs text-gray-400">
               <a href="https://aiscicomm.com">AISciComm Curriculum</a> © 2026 by{" "}
-              <a>Ha Nguyen, Erick Valdez, Kayla Ueshiro, Victoria Nguyen, Yenvy Pham, Tilly Duong, Sara Ludovise, & Rossella Santagata</a>{" "}
+              <a>Erick Valdez, Ha Nguyen, Kayla Ueshiro, Victoria Nguyen, Yenvy Pham, Tilly Duong, Sara Ludovise, & Rossella Santagata</a>{" "}
             is licensed under <span className="inline-flex items-center gap-1 whitespace-nowrap">
             <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a>
                   <img
