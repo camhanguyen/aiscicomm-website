@@ -674,7 +674,7 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
         <div className="max-w-6xl mx-auto px-6 pt-14 pb-0">
           <div className="grid md:grid-cols-[1fr_380px] gap-12 items-center pb-12 min-h-[340px]">
             <div>
-              <p className="text-[#1a4fa0] text-xs font-medium tracking-widest uppercase mb-3">
+              <p className="text-[#1a4fa0] text-xl font-medium tracking-widest uppercase mb-3">
                 AISciComm: An AI-Integrated Environmental Science Curriculum for High School
               </p>
 
@@ -690,6 +690,9 @@ function HomePage({ navigate }: { navigate: (p: Page) => void }) {
                   <b>Research Questions</b>: (1) How can the co-design and implementation of conversational agents with informal educators, community partners, and students be facilitated in equitable, collaborative ways?, 
                   (2) How does the AI-integrated curriculum support inclusive science communication about environmental systems, interest in STEM careers, and AI literacy?, and 
                   (3) What instructional adaptations do teachers make to facilitate these learning outcomes?
+                </p>
+                <p className="text-gray-600 text-sm leading-relaxed mt-4">
+                  We thank the teachers and students at Lynwood Unified School District and Anaheim Union High School District who helped us design, implement, and refine this curriculum.
                 </p>
               </div>
 
